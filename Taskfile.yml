@@ -1,0 +1,63 @@
+version: "3"
+
+vars:
+  ROOT_DIR:
+    sh: pwd
+
+tasks:
+  default:
+    desc: Show available tasks
+    cmds:
+      - task --list
+
+  dev:
+    desc: Start the backend and frontend together
+    deps:
+      - dev:server
+      - dev:web
+
+  setup:
+    desc: Install macOS packages and JavaScript dependencies
+    cmds:
+      - ./scripts/setup-mac.sh
+
+  install:
+    desc: Install backend and frontend JavaScript dependencies
+    cmds:
+      - npm install --prefix server
+      - npm install --prefix web
+
+  dev:server:
+    desc: Start the backend in watch mode
+    cmds:
+      - npm run dev --prefix server
+
+  dev:web:
+    desc: Start the Vue frontend
+    cmds:
+      - npm run dev --prefix web
+
+  start:
+    desc: Start the backend and serve the built frontend
+    cmds:
+      - npm run start --prefix server
+
+  build:
+    desc: Build the Vue frontend for the backend to serve
+    cmds:
+      - npm run build --prefix web
+
+  health:
+    desc: Check the local backend health endpoint
+    cmds:
+      - curl -s http://127.0.0.1:3030/api/health
+
+  scanners:
+    desc: List scanners detected by SANE
+    cmds:
+      - scanimage -L
+
+  clean:
+    desc: Remove built frontend assets
+    cmds:
+      - rm -rf web/dist
