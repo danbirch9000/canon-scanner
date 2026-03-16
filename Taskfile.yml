@@ -16,6 +16,11 @@ tasks:
       - dev:server
       - dev:web
 
+  dev:open:
+    desc: Start the backend and frontend together, then open the browser
+    cmds:
+      - ./scripts/dev-open.sh
+
   setup:
     desc: Install macOS packages and JavaScript dependencies
     cmds:
