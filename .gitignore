@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.env
+.DS_Store
+scans/*
+!scans/.gitkeep
+server/tmp/
+
