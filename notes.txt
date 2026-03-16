@@ -1,0 +1,2 @@
+scanimage --device pixma:04A91747_85A264 --mode Color --resolution 300 --format=tiff > scan.tiff
+convert scan.tiff scan.pdf
